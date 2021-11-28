@@ -1,3 +1,4 @@
+import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -8,7 +9,8 @@ import { Test1Component } from './components/test1/test1.component';
 @NgModule({
   declarations: [
     AppComponent,
-    Test1Component
+    Test1Component,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
