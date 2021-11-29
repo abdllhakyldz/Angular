@@ -1,1 +1,60 @@
-<p>test1 works!</p>
+<div class="container mt-5">
+   <h3>Dosya Yönetim Portalı</h3>
+  <div class="row">
+      <div class="col-md-3">
+          <form #kayitFormu="ngForm" class="mt-5">
+              <div class="form-group">
+                 <label>Dosya Adı</label>
+                 <input type="text" class="form-control"  #ad >
+              </div>
+              <div class="form-group">
+                 <label>Dosya</label>
+                 <input type="file" class="form-control" name="dosya"  required #dosya>
+                 <p class="text-danger">Dosyayı Giriniz</p>
+                </div>
+                <div class="form-group">
+                    <label>Dosya Türü</label>
+                    <input type="text" class="form-control"    #tur>
+                    <p class="text-danger" >Dosya türünü Giriniz</p>
+                   </div>
+              <button class="btn btn-success" (click)="Kaydet(ad.value,dosya.value,tur.value)">Kaydet</button> 
+              <div [ngClass]=" KisiSonuc.islem  ? 'alert alert-success':'alert alert-danger'" *ngIf="KisiSonuc.mesaj.length>0">{{KisiSonuc.mesaj}}</div>
+             
+          </form>
+       </div>
+       <div class="col-md-9 mt-5">
+              <table class="table table-striped mt-3">
+                <thead> 
+                    <th>Id</th>
+                    <th>Dosya Adı</th>
+                    <th>Dosya</th>
+                    <th>Dosya Türü</th>
+                    <th>Düzenle</th>
+                    <th>Sil</th>
+                </thead> 
+                <tbody>
+                    <tr *ngFor="let data of kisiler"> 
+                        <td>{{data.Id}}</td>
+                        <td>{{data.dosyaadi}}</td>
+                        <td>{{data.dosya}}</td>
+                        <td>{{data.dosyaturu}}</td>
+                        <td> <button class="btn btn-warning" [routerLink]="['/duzenlesil',data.Id,1]">Düzenle</button> </td>
+                        <td> <button class="btn btn-danger" [routerLink]="['/duzenlesil',data.Id,2]">Sil</button></td>
+                    </tr>
+                </tbody>
+              </table>
+
+       </div>
+     
+
+ 
+
+    </div>
+
+
+
+
+
+
+
+</div>

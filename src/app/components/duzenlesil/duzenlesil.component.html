@@ -1,0 +1,48 @@
+<div class="contaigner mt-5">
+  <div class="row">
+    <div class="col-md-8">
+
+    <form #DosForm="ngForm" (ngSumbit)="Kaydet()" *ngIf="islem==1">  
+
+      <div class="card"> 
+       <div class="card-header"><h4>Dosya Düzenle</h4></div>
+       <div class="card-body">
+        <div class="form-group">
+          <Label>Dosya Adı</Label>
+          <input type="text" name="dosyaadi" class="form-control" [(ngModel)]="secDos.dosyaadi">
+          <Label>Dosya</Label>
+          <input type="text" name="dosya" class="form-control" [(ngModel)]="secDos.dosya">
+          <Label>Dosya Türü</Label>
+          <input type="text" name="dosyaturu" class="form-control" [(ngModel)]="secDos.dosyaturu">
+        </div>
+       </div>
+       <div class="card-footer"> 
+         <input type="submit" value="kaydet" class="btn btn-primary">
+         <button class="btn btn-danger" [routerLink]="['/dosyalar']">İptal</button>
+       </div>
+     </div>
+     
+   </form>   
+
+   <div class="card" *ngIf="islem==2"> 
+    <div class="card-header">
+      <h4>Dosya Silme</h4>
+    </div>
+    <div class="card-body">
+     <div class="form-group">
+       <b>Dosya Adı:</b> {{secDos.dosyaadi}}
+       <h2>Dosya Silinecektir.Onaylıyor musunuz?</h2>
+     </div>
+    </div>
+    <div class="card-footer"> 
+      <button class="btn btn-danger" (click)="Sil">Sil</button>
+      <button class="btn btn-primary" [routerLink]="['/dosyalar']">İptal</button>
+    </div>
+    
+  </div>
+
+  <div [ngClass]=" KisiSonuc.islem  ? 'alert alert-success':'alert alert-danger'" *ngIf="KisiSonuc.mesaj.length>0">{{KisiSonuc.mesaj}}</div>
+            
+    </div>
+  </div>
+</div>
