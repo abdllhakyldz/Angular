@@ -9,6 +9,7 @@ const routes: Routes = [
  {path: '', component: HomeComponent },
  {path: 'dosyalar', component: Test1Component},
  {path: 'duzenlesil/:id/:islem', component: DuzenlesilComponent},
+ {path: 'panel' , component:Panel}
 ];
 
 @NgModule({
