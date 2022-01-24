@@ -1,29 +1,25 @@
-import { Sonuc } from './../../models/sonuc';
+
 import { DataService } from './../../services/data.service';
 import { Kisi } from './../../models/kisi';
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core'; 
+ 
 @Component({
   selector: 'app-test1',
   templateUrl: './test1.component.html',
   styleUrls: ['./test1.component.css']
 })
 export class Test1Component implements OnInit {
- "ad":string;
- "kisiler":Kisi[];
- "KisiSonuc":Sonuc= new Sonuc();
- "ara": string = "";
- "sira":string = "adsoyad";
- "sayfa":number = 1;  
- "limit":number =10;
- "dosya":File;
+ "secKisi": Kisi = new Kisi(); 
+"baslik": string= "Yeni Kayıt"
+ "kisiler": Kisi[] = [];
+ 
 
   constructor(public service:DataService  ) { }
 
-  ngOnInit(): void {
-    this.ad=this.service.siteAdi;
+  ngOnInit(): void { 
     this.KisiListeGetir();
-  }
+    this.secKisi.Id =0;
+   }
 
  KisiListeGetir(){
     this.kisiler=this.service.DosyaListele();
@@ -31,16 +27,27 @@ export class Test1Component implements OnInit {
 
  
 
- Kaydet(k:string, dos:string, tur:string, ){
-   var yeni:Kisi= new Kisi();
-   yeni.Id=Math.floor(Math.random()*1000);
-   yeni.dosyaadi = k;
-   yeni.dosya =dos;
-   yeni.dosyaturu =tur;
-   this.KisiSonuc=this.service.DosyaEkle(yeni);
+ KisiSil(k:Kisi){
+   var index=this.kisiler.indexOf(k); 
+   this.kisiler.splice(index,1);
  }
 
+ Kaydet(){ 
+   if(this.secKisi.Id==0) {
+     var Id= Math.floor(Math.random()*100);
+     this.secKisi.Id=Id;
+     this.kisiler.push(this.secKisi);
+   }
+   this.secKisi = new Kisi;
+   this.baslik = "Yeni Kayıt";
 
+ }
+
+ KisiDuzenle(k:Kisi){
+   this.secKisi =k;
+   this.baslik = "Kayıt Düzenle";
+
+ }
 
 
 }

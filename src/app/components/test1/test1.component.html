@@ -1,60 +1,52 @@
 <div class="container mt-5">
-   <h3>Dosya Yönetim Portalı</h3>
-  <div class="row">
-      <div class="col-md-3">
-          <form #kayitFormu="ngForm" class="mt-5">
-              <div class="form-group">
-                 <label>Dosya Adı</label>
-                 <input type="text" class="form-control"  #ad >
-              </div>
-              <div class="form-group">
-                 <label>Dosya</label>
-                 <input type="file" class="form-control" name="dosya"  required #dosya>
-                 <p class="text-danger">Dosyayı Giriniz</p>
-                </div>
-                <div class="form-group">
-                    <label>Dosya Türü</label>
-                    <input type="text" class="form-control"    #tur>
-                    <p class="text-danger" >Dosya türünü Giriniz</p>
-                   </div>
-              <button class="btn btn-success" (click)="Kaydet(ad.value,dosya.value,tur.value)">Kaydet</button> 
-              <div [ngClass]=" KisiSonuc.islem  ? 'alert alert-success':'alert alert-danger'" *ngIf="KisiSonuc.mesaj.length>0">{{KisiSonuc.mesaj}}</div>
-             
-          </form>
-       </div>
-       <div class="col-md-9 mt-5">
-              <table class="table table-striped mt-3">
-                <thead> 
-                    <th>Id</th>
-                    <th>Dosya Adı</th>
-                    <th>Dosya</th>
-                    <th>Dosya Türü</th>
-                    <th>Düzenle</th>
-                    <th>Sil</th>
-                </thead> 
-                <tbody>
-                    <tr *ngFor="let data of kisiler"> 
-                        <td>{{data.Id}}</td>
-                        <td>{{data.dosyaadi}}</td>
-                        <td>{{data.dosya}}</td>
-                        <td>{{data.dosyaturu}}</td>
-                        <td> <button class="btn btn-warning" [routerLink]="['/duzenlesil',data.Id,1]">Düzenle</button> </td>
-                        <td> <button class="btn btn-danger" [routerLink]="['/duzenlesil',data.Id,2]">Sil</button></td>
-                    </tr>
-                </tbody>
-              </table>
+    <div class="col-md-3">
+        <h4>{{baslik}}</h4>
 
-       </div>
-     
-
- 
-
+        <form  #kayitForm="ngForm" (ngSubmit)="Kaydet()">
+            <input type="hidden" class="form-control" required name="Id" #Id="ngModel" [(ngModel)]="secKisi.Id">
+           <div class="form-group">
+             <label>Adı Soyadı</label>
+             <input type="text" class="form-control" required name="adsoyad" #adsoyad="ngModel" [(ngModel)]="secKisi.Adsoyad"  [ngClass]="{'is-invalid': adsoyad.invalid}">
+          </div>
+          <div class="form-group">
+            <label>Dosya</label>
+            <input type="file" class="form-control" required name="dosyaadi" #dosyaadi="ngModel" [(ngModel)]="secKisi.dosyaadi"  [ngClass]="{'is-invalid': dosyaadi.invalid}">
+         </div>
+         <div class="form-group">
+            <label>Dosya türü</label>
+            <input type="text" class="form-control" required name="dosyaturu" #dosyaturu="ngModel" [(ngModel)]="secKisi.dosyaturu" [ngClass]="{'is-invalid': dosyaturu.invalid}" >
+         </div>
+         <div class="form-group"> 
+            <input type="submit" value="kaydet" class="btn btn-success" [disabled]="kayitForm.invalid">
+         </div>
+        </form>
     </div>
+ 
+<div class="col-md-7">
+    <div class="table table-hover">
+    <thead class="table-info">
+        <th>Id</th>
+        <th>Ad</th>
+        <th>Dosya Adı</th>
+        <th>Dosya Uzantısı</th>
+        <th>Düzenle</th>
+        <th>Sil</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let kisi of kisiler">
+    <td>{{kisi.Id}}</td>
+    <td>{{kisi.Adsoyad}}</td>
+    <td>{{kisi.dosyaadi}}</td>
+    <td>{{kisi.dosyaturu}}</td>
+    <td><button class="btn btn-warning" (click)="KisiDuzenle(kisi)">Düzenle</button></td>
+    <td> <button class="btn btn-danger" (click)="KisiSil(kisi)">Sil</button></td>
+  </tr>
+    </tbody>
+</div>
 
 
 
 
-
-
-
+</div>
+ 
 </div>

@@ -1,4 +1,3 @@
-import { DuzenlesilComponent } from './components/duzenlesil/duzenlesil.component';
 import { DataService } from './services/data.service';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
@@ -14,7 +13,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     Test1Component,
     HomeComponent,
-    DuzenlesilComponent,
   ],
   imports: [
     BrowserModule,

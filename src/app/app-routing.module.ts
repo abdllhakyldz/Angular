@@ -1,4 +1,4 @@
-import { DuzenlesilComponent } from './components/duzenlesil/duzenlesil.component';
+
 import { Test1Component } from './components/test1/test1.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule, Component } from '@angular/core';
@@ -8,8 +8,7 @@ const routes: Routes = [
 
  {path: '', component: HomeComponent },
  {path: 'dosyalar', component: Test1Component},
- {path: 'duzenlesil/:id/:islem', component: DuzenlesilComponent},
- {path: 'panel' , component:Panel}
+  
 ];
 
 @NgModule({
